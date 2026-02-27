@@ -1,4 +1,13 @@
-const ProfileHeader = ({ user, isEditing, formData, onStartEdit, onInputChange, onCancelEdit, onSaveProfile }) => {
+const ProfileHeader = ({
+  user,
+  isEditing,
+  formData,
+  formError,
+  onStartEdit,
+  onSaveProfile,
+  onCancelEdit,
+  onInputChange,
+}) => {
   return (
     <div className="profile-header">
       <img src={user.avatar || '/default-avatar.png'} alt={`${user.name}'s avatar`} className="avatar" />
@@ -13,6 +22,7 @@ const ProfileHeader = ({ user, isEditing, formData, onStartEdit, onInputChange, 
         </div>
       ) : (
         <div className="profile-form">
+          {formError && <div className="form-error">{formError}</div>}
           <input
             type="text"
             value={formData.name}
