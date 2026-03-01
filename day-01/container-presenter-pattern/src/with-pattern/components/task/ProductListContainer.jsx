@@ -7,10 +7,11 @@ const ProductListContainer = () => {
   // TODO:
   // API calls and data fetching:
   // - GET all products +
-  // - GET filtered products
+  // - GET filtered/sorted products
   // Cart management
-  // Error handling
+  // Error handling +
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchProducts();
@@ -21,11 +22,13 @@ const ProductListContainer = () => {
       const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/products`);
       console.log(response.data);
       setProducts(response.data);
-    } catch {
-      console.log('Something went wrong');
+    } catch (err) {
+      setError('Failed to fetch products');
     }
   };
-  return <ProductListPresenter products={products} />;
+
+  //const sortProducts = async () => {};
+  return <ProductListPresenter products={products} error={error} />;
 };
 
 export default ProductListContainer;
