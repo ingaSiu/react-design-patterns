@@ -5,7 +5,7 @@ const ProductCard = ({ imageUrl, name, price, inStock }) => {
         <img src={imageUrl} alt={name} className="max-h-full object-contain" />
       </div>
       <div className="text-center mt-4">
-        <h1 className="font-bold text-lg">{name}</h1>
+        <h1 className="font-bold text-lg text-blue-800">{name}</h1>
         <div className="mt-2">
           <p className="text-blue-600 font-semibold">$ {price}</p>
           <p className="text-sm">
