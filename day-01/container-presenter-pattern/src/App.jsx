@@ -1,13 +1,18 @@
 import './App.css';
 
-import UserProfileContainer from './with-pattern/components/profile/UserProfileContainer';
+import ProductListContainer from './with-pattern/components/task/ProductListContainer';
+
+// import UserProfileContainer from './with-pattern/components/profile/UserProfileContainer';
 
 //import UserProfile from './messy-way/components/UserProfile';
 
 function App() {
   return (
-    <div>
-      <UserProfileContainer userId={1} />
+    <div className="min-h-screen bg-gray-100 flex items-start justify-center">
+      {/* <UserProfileContainer userId={3} /> */}
+      <div className="w-full max-w-7xl p-6">
+        <ProductListContainer />
+      </div>
     </div>
   );
 }
