@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import ProductListPresenter from './ProductListPresenter';
-import SortFilterControls from './product/SortFilterControls';
 import axios from 'axios';
 
 const INITIAL_PARAMS = {
@@ -15,7 +14,7 @@ const ProductListContainer = () => {
   // TODO:
   // API calls and data fetching:
   // - GET all products +
-  // - GET filtered/sorted products
+  // - GET filtered/sorted products+
   // Cart management
   // Error handling +
   const [products, setProducts] = useState([]);
@@ -58,9 +57,14 @@ const ProductListContainer = () => {
     setParams(INITIAL_PARAMS);
   };
   return (
-    <div className="flex flex-col items-center w-full max-w-7xl mx-auto p-6 pt-12 space-y-8">
-      <SortFilterControls params={params} onParamChange={handleParamChange} onReset={resetFilters} />
-      <ProductListPresenter products={products} error={error} />;
+    <div className="flex flex-col items-center w-full max-w-7xl mx-auto p-6 pt-12">
+      <ProductListPresenter
+        products={products}
+        error={error}
+        params={params}
+        onParamChange={handleParamChange}
+        onReset={resetFilters}
+      />
     </div>
   );
 };
