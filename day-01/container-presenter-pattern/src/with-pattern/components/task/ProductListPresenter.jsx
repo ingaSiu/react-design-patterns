@@ -1,6 +1,6 @@
 // Break down into smaller presenters:
 // ProductCard +
-// SortFilterControls
+// SortFilterControls+
 // CartSummary
 
 import ErrorMessage from '../common/ErrorMessage';
