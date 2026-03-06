@@ -3,11 +3,22 @@
 // SortFilterControls+
 // CartSummary
 
+import CartSummary from './product/CartSummary';
 import ErrorMessage from '../common/ErrorMessage';
 import ProductCard from './product/ProductCard';
 import SortFilterControls from './product/SortFilterControls';
 
-const ProductListPresenter = ({ products, error, params, onParamChange, onReset }) => {
+const ProductListPresenter = ({
+  products,
+  cart,
+  cartSummary,
+  onAddToCart,
+  onRemoveFromCart,
+  error,
+  params,
+  onParamChange,
+  onReset,
+}) => {
   // TODO:
   // Rendering products +
   // Sort/filter UI interactions+
@@ -18,6 +29,7 @@ const ProductListPresenter = ({ products, error, params, onParamChange, onReset 
 
   return (
     <div className="w-full space-y-8">
+      <CartSummary cart={cart} summary={cartSummary} onRemove={onRemoveFromCart} />
       {/* 1. The Controls Section */}
       <SortFilterControls params={params} onParamChange={onParamChange} onReset={onReset} />
 
@@ -28,6 +40,7 @@ const ProductListPresenter = ({ products, error, params, onParamChange, onReset 
             <ProductCard
               key={product.id}
               {...product} // Clean shorthand if props match object keys
+              onAdd={() => onAddToCart(product)}
             />
           ))
         ) : (
