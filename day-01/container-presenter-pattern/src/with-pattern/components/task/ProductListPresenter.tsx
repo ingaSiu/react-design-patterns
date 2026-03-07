@@ -3,10 +3,10 @@
 // SortFilterControls+
 // CartSummary
 
-import CartSummary from './product/CartSummary';
-import ErrorMessage from '../common/ErrorMessage';
-import ProductCard from './product/ProductCard';
-import SortFilterControls from './product/SortFilterControls';
+import CartSummary from './product/CartSummary.js';
+import ErrorMessage from '../common/ErrorMessage.js';
+import ProductCard from './product/ProductCard.js';
+import SortFilterControls from './product/SortFilterControls.js';
 
 const ProductListPresenter = ({
   products,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import ProductListPresenter from './ProductListPresenter';
+import ProductListPresenter from './ProductListPresenter.js';
 import axios from 'axios';
 
 const INITIAL_PARAMS = {

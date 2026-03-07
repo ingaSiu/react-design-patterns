@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import UserProfilePresenter from './UserProfilePresenter';
+import UserProfilePresenter from './UserProfilePresenter.js';
 import axios from 'axios';
 
 const UserProfileContainer = ({ userId }) => {

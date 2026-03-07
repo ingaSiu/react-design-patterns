@@ -1,7 +1,7 @@
-import ErrorMessage from '../common/ErrorMessage';
-import LoadingSpinner from '../common/LoadingSpinner';
-import PostList from '../post/PostList';
-import ProfileHeader from './ProfileHeader';
+import ErrorMessage from '../common/ErrorMessage.js';
+import LoadingSpinner from '../common/LoadingSpinner.js';
+import PostList from '../post/PostList.js';
+import ProfileHeader from './ProfileHeader.js';
 import { useState } from 'react';
 
 const UserProfilePresenter = ({ user, posts, loading, error, onRetry, onUpdateUser }) => {

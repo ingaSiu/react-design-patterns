@@ -1,6 +1,6 @@
 import './App.css';
 
-import ProductListContainer from './with-pattern/components/task/ProductListContainer';
+import ProductListContainer from './with-pattern/components/task/ProductListContainer.js';
 
 // import UserProfileContainer from './with-pattern/components/profile/UserProfileContainer';
 
