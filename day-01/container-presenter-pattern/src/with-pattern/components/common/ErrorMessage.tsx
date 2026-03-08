@@ -1,4 +1,10 @@
-const ErrorMessage = ({ title, message, onRetry }) => {
+type Props = {
+  title: string;
+  message: string;
+  onRetry?: () => void;
+};
+
+const ErrorMessage = ({ title, message, onRetry }: Props) => {
   return (
     <div className="error-container">
       <h3>{title}</h3>

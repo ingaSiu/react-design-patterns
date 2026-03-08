@@ -1,4 +1,12 @@
-const ProductCard = ({ imageUrl, name, price, inStock, onAdd }) => {
+type ProductCardProps = {
+  imageUrl: string;
+  name: string;
+  price: number;
+  inStock: boolean;
+  onAdd: () => void;
+};
+
+const ProductCard = ({ imageUrl, name, price, inStock, onAdd }: ProductCardProps) => {
   return (
     <div className="flex flex-col items-center w-64 border rounded-lg overflow-hidden shadow-sm p-4 bg-white">
       <div className="w-full h-48 flex justify-center items-center">
