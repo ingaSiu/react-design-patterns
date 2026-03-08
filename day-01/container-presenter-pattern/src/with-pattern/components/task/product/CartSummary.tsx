@@ -1,4 +1,12 @@
-const CartSummary = ({ cart, summary, onRemove }) => {
+import type { CartItem, CartSummaryData } from '../../../../types/products';
+
+type CartSummaryProps = {
+  cart: CartItem[];
+  summary: CartSummaryData;
+  onRemove: (id: string) => void;
+};
+
+const CartSummary = ({ cart, summary, onRemove }: CartSummaryProps) => {
   if (cart.length === 0) return null;
 
   return (

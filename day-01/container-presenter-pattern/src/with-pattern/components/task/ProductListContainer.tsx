@@ -1,3 +1,4 @@
+import type { CartItem, CartSummaryData, Product, ProductQueryParams } from '../../../types/products.js';
 import { useEffect, useState } from 'react';
 
 import ProductListPresenter from './ProductListPresenter.js';
@@ -15,18 +16,13 @@ const ProductListContainer = () => {
   // API calls and data fetching:
   // - GET all products +
   // - GET filtered/sorted products+
-  // Cart management
+  // Cart management +
   // Error handling +
-  const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [error, setError] = useState(null);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [error, setError] = useState<string | null>(null);
   // Centralized state for all query params
-  const [params, setParams] = useState({
-    category: '',
-    sort: 'name',
-    filter: 'all',
-    search: '',
-  });
+  const [params, setParams] = useState<ProductQueryParams>(INITIAL_PARAMS);
 
   useEffect(() => {
     fetchProducts();
@@ -50,7 +46,7 @@ const ProductListContainer = () => {
     }
   };
 
-  const handleParamChange = (key, value) => {
+  const handleParamChange = (key: keyof ProductQueryParams, value: string) => {
     setParams((prev) => ({ ...prev, [key]: value }));
   };
 
@@ -58,7 +54,7 @@ const ProductListContainer = () => {
     setParams(INITIAL_PARAMS);
   };
 
-  const addToCart = (product) => {
+  const addToCart = (product: Product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
       if (existingItem) {
@@ -67,11 +63,11 @@ const ProductListContainer = () => {
       return [...prevCart, { ...product, quantity: 1 }];
     });
   };
-  const removeFromCart = (productId) => {
+  const removeFromCart = (productId: string) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
 
-  const cartSummary = {
+  const cartSummary: CartSummaryData = {
     totalItems: cart.reduce((sum, item) => sum + item.quantity, 0),
     totalPrice: cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2),
   };

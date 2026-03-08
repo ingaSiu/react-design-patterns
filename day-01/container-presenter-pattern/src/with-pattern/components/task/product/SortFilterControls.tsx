@@ -1,4 +1,12 @@
-const SortFilterControls = ({ params, onParamChange, onReset }) => {
+import type { ProductQueryParams } from '../../../../types/products';
+
+type SortFilterProps = {
+  params: ProductQueryParams;
+  onParamChange: (key: keyof ProductQueryParams, value: string) => void;
+  onReset: () => void;
+};
+
+const SortFilterControls = ({ params, onParamChange, onReset }: SortFilterProps) => {
   // Shared styles for our inputs
   const inputBase =
     'block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white';
