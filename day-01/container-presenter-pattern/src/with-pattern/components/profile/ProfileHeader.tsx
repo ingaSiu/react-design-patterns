@@ -1,3 +1,16 @@
+import type { User, UserProfileFormData } from '../../../types/profile';
+
+type HeaderProps = {
+  user: User;
+  isEditing: boolean;
+  formData: UserProfileFormData;
+  formError: string | null;
+  onStartEdit: () => void;
+  onSaveProfile: () => void;
+  onCancelEdit: () => void;
+  onInputChange: (field: keyof UserProfileFormData, value: string) => void;
+};
+
 const ProfileHeader = ({
   user,
   isEditing,
@@ -7,7 +20,7 @@ const ProfileHeader = ({
   onSaveProfile,
   onCancelEdit,
   onInputChange,
-}) => {
+}: HeaderProps) => {
   return (
     <div className="profile-header">
       <img src={user.avatar || '/default-avatar.png'} alt={`${user.name}'s avatar`} className="avatar" />
