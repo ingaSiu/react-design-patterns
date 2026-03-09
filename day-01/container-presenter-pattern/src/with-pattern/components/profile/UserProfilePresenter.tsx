@@ -1,15 +1,31 @@
+import type { UpdateUserResponse, User, UserProfileFormData } from '../../../types/profile.js';
+
 import ErrorMessage from '../common/ErrorMessage.js';
 import LoadingSpinner from '../common/LoadingSpinner.js';
+import type { Post } from '../../../types/posts.js';
 import PostList from '../post/PostList.js';
 import ProfileHeader from './ProfileHeader.js';
 import { useState } from 'react';
 
-const UserProfilePresenter = ({ user, posts, loading, error, onRetry, onUpdateUser }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({});
-  const [formError, setFormError] = useState(null);
+type UserProfilePresenterProps = {
+  user: User | null;
+  posts: Post[];
+  loading: boolean;
+  error: string | null;
+  onRetry: () => void;
+  onUpdateUser: (data: UserProfileFormData) => Promise<UpdateUserResponse>;
+};
 
-  const handleInputChange = (field, value) => {
+const UserProfilePresenter = ({ user, posts, loading, error, onRetry, onUpdateUser }: UserProfilePresenterProps) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState<UserProfileFormData>({
+    name: user?.name || '',
+    email: user?.email || '',
+    bio: user?.bio || '',
+  });
+  const [formError, setFormError] = useState<string | null>(null);
+
+  const handleInputChange = (field: keyof UserProfileFormData, value: string) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -24,7 +40,7 @@ const UserProfilePresenter = ({ user, posts, loading, error, onRetry, onUpdateUs
       setIsEditing(false);
       setFormError(null);
     } else {
-      setFormError(result.error);
+      setFormError(result.error || 'Unknown error');
     }
   };
 
@@ -45,8 +61,8 @@ const UserProfilePresenter = ({ user, posts, loading, error, onRetry, onUpdateUs
     return <LoadingSpinner message="Loading user profile..." />;
   }
 
-  if (error) {
-    return <ErrorMessage title="Oops! Something went wrong" message={error} onRetry={onRetry} />;
+  if (error || !user) {
+    return <ErrorMessage title="Oops! Something went wrong" message={error || 'User not found'} onRetry={onRetry} />;
   }
   return (
     <div className="user-profile">
