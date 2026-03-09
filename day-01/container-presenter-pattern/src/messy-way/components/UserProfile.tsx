@@ -1,14 +1,23 @@
+import type { User, UserProfileFormData } from '../../types/profile';
 import { useEffect, useState } from 'react';
 
+import type { Post } from '../../types/posts';
 import axios from 'axios';
 
-const UserProfile = ({ userId }) => {
-  const [user, setUser] = useState(null);
-  const [posts, setPosts] = useState([]);
+// Define a type for your form to avoid "implicit any" errors
+type ProfileFormData = Pick<User, 'name' | 'email' | 'bio'>;
+
+const UserProfile = ({ userId }: { userId: string }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<ProfileFormData>({
+    name: '',
+    email: '',
+    bio: '',
+  });
 
   useEffect(() => {
     fetchUserData();
@@ -51,7 +60,7 @@ const UserProfile = ({ userId }) => {
     }
   };
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: keyof UserProfileFormData, value: string) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -67,7 +76,7 @@ const UserProfile = ({ userId }) => {
     );
   }
 
-  if (error) {
+  if (error || !user) {
     return (
       <div className="error-container">
         <h3>Oops! Something went wrong</h3>
