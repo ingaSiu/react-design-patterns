@@ -1,13 +1,15 @@
+import type { User, UserProfileFormData } from '../../../types/profile.js';
 import { useEffect, useState } from 'react';
 
+import type { Post } from '../../../types/posts.js';
 import UserProfilePresenter from './UserProfilePresenter.js';
 import axios from 'axios';
 
-const UserProfileContainer = ({ userId }) => {
-  const [user, setUser] = useState(null);
-  const [posts, setPosts] = useState([]);
+const UserProfileContainer = ({ userId }: { userId: string }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchUserData();
@@ -17,7 +19,7 @@ const UserProfileContainer = ({ userId }) => {
   const fetchUserData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/users/${userId}`);
+      const response = await axios.get<User>(`${import.meta.env.VITE_API_BASE_URL}/api/users/${userId}`);
       setUser(response.data);
     } catch (err) {
       setError('Failed to fetch user data');
@@ -28,16 +30,19 @@ const UserProfileContainer = ({ userId }) => {
 
   const fetchUserPosts = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/users/${userId}/posts`);
+      const response = await axios.get<Post[]>(`${import.meta.env.VITE_API_BASE_URL}/api/users/${userId}/posts`);
       setPosts(response.data);
     } catch (err) {
       console.error('Failed to fetch posts');
     }
   };
 
-  const handleUpdateUser = async (updatedUserData) => {
+  const handleUpdateUser = async (updatedUserData: UserProfileFormData) => {
     try {
-      const response = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/users/${userId}`, updatedUserData);
+      const response = await axios.put<User>(
+        `${import.meta.env.VITE_API_BASE_URL}/api/users/${userId}`,
+        updatedUserData,
+      );
       setUser(response.data);
       return { success: true };
     } catch (err) {
