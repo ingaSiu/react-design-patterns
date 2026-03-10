@@ -1,4 +1,6 @@
-const PostList = ({ posts }) => {
+import type { Post } from '../../../types/posts';
+
+const PostList = ({ posts }: { posts: Post[] }) => {
   return (
     <div className="user-posts">
       <h2>Recent Posts ({posts.length})</h2>
