@@ -5,6 +5,7 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "types": ["@testing-library/jest-dom", "vitest/globals"],
 
     /* Bundler Strategy (Crucial for Vite) */
     "moduleResolution": "bundler",
