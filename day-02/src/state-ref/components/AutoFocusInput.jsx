@@ -1,0 +1,13 @@
+import { useEffect, useRef } from 'react';
+
+function AutoFocusInput() {
+  const inputRef = useRef(null);
+  // to get the focus in input component you will need to access it in the DOM level
+  useEffect(() => {
+    inputRef.current.focus(); // directly access DOM
+  }, []);
+
+  return <input className="border rounded-2xl p-2 my-3" ref={inputRef} placeholder="Type here..." />;
+}
+
+export default AutoFocusInput;
