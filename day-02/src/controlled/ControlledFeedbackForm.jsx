@@ -20,6 +20,7 @@ export default function ControlledFeedbackForm() {
       <input
         className="border rounded-2xl p-2 my-3"
         type="text"
+        name="name"
         value={form.name}
         onChange={handleChange}
         placeholder="Name"
@@ -27,12 +28,14 @@ export default function ControlledFeedbackForm() {
       <input
         className="border rounded-2xl p-2 my-3"
         type="email"
+        name="email"
         value={form.email}
         onChange={handleChange}
         placeholder="Email"
       />
       <textarea
         className="border rounded-2xl p-2 my-3"
+        name="message"
         value={form.message}
         onChange={handleChange}
         placeholder="Your message"
