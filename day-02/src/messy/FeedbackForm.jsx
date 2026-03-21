@@ -15,6 +15,9 @@ export default function FeedbackForm() {
       alert('Valid email required');
       return;
     }
+    // this message value is not handled with state
+    // but the ref makes the textarea focused if it is empty
+    // this kind of handling is not correct and makes harder validation, rendering and testing
     if (!messageRef.current.value) {
       messageRef.current.focus();
       return;
