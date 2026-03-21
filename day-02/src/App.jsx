@@ -2,7 +2,9 @@
 // import Counter from './state-ref/components/Counter';
 // import CounterWithRef from './state-ref/components/CounterWithRef';
 
-import FeedbackForm from './messy/FeedbackForm';
+import ControlledFeedbackForm from './controlled/ControlledFeedbackForm';
+
+// import FeedbackForm from './messy/FeedbackForm';
 
 function App() {
   return (
@@ -10,7 +12,8 @@ function App() {
       {/* <Counter />
       <AutoFocusInput />
       <CounterWithRef /> */}
-      <FeedbackForm />
+      {/* <FeedbackForm /> */}
+      <ControlledFeedbackForm />
     </div>
   );
 }
