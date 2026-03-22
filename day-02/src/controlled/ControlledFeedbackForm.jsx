@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 export default function ControlledFeedbackForm() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
+
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const messageRef = useRef();
 
   // handle the values change
   const handleChange = (e) => {
@@ -12,6 +16,18 @@ export default function ControlledFeedbackForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!form.name) {
+      nameRef.current.focus();
+      return;
+    }
+    if (!form.email.includes('@')) {
+      emailRef.current.focus();
+      return;
+    }
+    if (!form.message) {
+      messageRef.current.focus();
+      return;
+    }
     console.log('Form submitted:', form);
   };
 
@@ -22,6 +38,7 @@ export default function ControlledFeedbackForm() {
         type="text"
         name="name"
         value={form.name}
+        ref={nameRef}
         onChange={handleChange}
         placeholder="Name"
       />
@@ -30,6 +47,7 @@ export default function ControlledFeedbackForm() {
         type="email"
         name="email"
         value={form.email}
+        ref={emailRef}
         onChange={handleChange}
         placeholder="Email"
       />
@@ -37,6 +55,7 @@ export default function ControlledFeedbackForm() {
         className="border rounded-2xl p-2 my-3"
         name="message"
         value={form.message}
+        ref={messageRef}
         onChange={handleChange}
         placeholder="Your message"
       />
