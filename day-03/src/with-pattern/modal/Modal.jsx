@@ -9,4 +9,21 @@ const Modal = ({ children }) => {
   );
 };
 
+function ModalHeader({ children }) {
+  return <div className="modal-header">{children}</div>;
+}
+
+function ModalBody({ children }) {
+  return <div className="modal-body">{children}</div>;
+}
+
+function ModalFooter({ children }) {
+  return <div className="modal-footer">{children}</div>;
+}
+
+// Attach subcomponents
+Modal.Header = ModalHeader;
+Modal.Body = ModalBody;
+Modal.Footer = ModalFooter;
+
 export default Modal;
