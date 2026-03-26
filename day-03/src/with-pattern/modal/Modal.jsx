@@ -1,9 +1,13 @@
-const Modal = ({ children }) => {
+const Modal = ({ children, isOPen, onClose }) => {
+  if (!isOPen) return null;
+
   return (
     <div className="modal-backdrop">
       <div className="modal-container">
         {children}
-        <button className="modal-close">✖</button>
+        <button className="modal-close" onClick={onClose}>
+          ✖
+        </button>
       </div>
     </div>
   );
