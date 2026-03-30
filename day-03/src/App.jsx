@@ -1,5 +1,6 @@
 import './App.css';
 
+import AccordionDemo from './with-pattern/accordion/AccordionDemo';
 import Modal from './with-pattern/modal/Modal';
 import { useState } from 'react';
 
@@ -16,6 +17,7 @@ function App() {
         </Modal.Header>
         <Modal.Body>
           <p className="text-black">This is a modal built with the Compound Component pattern.</p>
+          <AccordionDemo />
         </Modal.Body>
         <Modal.Footer>
           <button className="text-black" onClick={() => setIsOpen(false)}>
