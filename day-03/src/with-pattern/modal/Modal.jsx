@@ -1,5 +1,5 @@
-const Modal = ({ children, isOPen, onClose }) => {
-  if (!isOPen) return null;
+const Modal = ({ children, isOpen, onClose }) => {
+  if (!isOpen) return null;
 
   return (
     <div className="modal-backdrop">
