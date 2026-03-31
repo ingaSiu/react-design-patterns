@@ -1,6 +1,7 @@
 // import BikeTracker from './messy/BikeTracker';
 // import CarTracker from './messy/CarTracker';
 import MouseTracker from './with-pattern/MouseTracker';
+import MouseTrackerWithChildren from './with-pattern/using-children/MouseTrackerWithChildren';
 
 function App() {
   return (
@@ -23,6 +24,13 @@ function App() {
           </p>
         )}
       />
+      <MouseTrackerWithChildren>
+        {({ x, y }) => (
+          <p>
+            🏍️ Bike is at ({x}, {y})
+          </p>
+        )}
+      </MouseTrackerWithChildren>
     </div>
   );
 }
