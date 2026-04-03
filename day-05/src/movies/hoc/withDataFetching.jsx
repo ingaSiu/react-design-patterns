@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
+// taking function as an argument
 export function withDataFetching(WrappedComponent) {
+  // returns other function
   return function WithDataFetchingComponent(props) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
