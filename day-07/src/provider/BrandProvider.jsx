@@ -11,7 +11,7 @@ const BrandProvider = ({ children }) => {
     const data = { name: 'tapaScript', color: '#765G45' };
     setBrand(data);
   }, []);
-
+  // new React 19 context syntax
   return <BrandContext value={brand}>{children}</BrandContext>;
 };
 BrandProvider.propTypes = {
