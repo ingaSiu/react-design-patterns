@@ -1,7 +1,9 @@
+import { useBrand } from './hook/useBrand';
 import { useTheme } from './hook/useTheme';
 
 function App() {
   const { theme, toggleTheme } = useTheme();
+  const brand = useBrand();
 
   return (
     <div
@@ -17,6 +19,7 @@ function App() {
       </nav>
       <main className="p-4 text-center">
         <p className="text-xl m-3">{theme ? '☀️ Light Mode' : '🌙 Dark Mode'}</p>
+        <div>{brand && <p>{brand.name}</p>}</div>
       </main>
     </div>
   );
