@@ -2,10 +2,14 @@ import { toggleReducer } from '../reducers/toggle-reducer';
 import { useReducer } from 'react';
 
 export default function Toggle({ reducer = toggleReducer, onToggle }) {
+  // define two things: reducer and state value (on & clicks)
+  // it returns a current state value and dispatch function (with it dispatch an action to reducer)
   const [state, dispatch] = useReducer(reducer, { on: false, clicks: 0 });
+  // destructure values from the state
   const { on, clicks } = state;
 
   function handleToggle() {
+    // calling dispatch function with 'toggle' action
     dispatch({ type: 'toggle' });
     onToggle?.(!on);
   }
