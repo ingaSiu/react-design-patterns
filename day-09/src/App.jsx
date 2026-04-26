@@ -1,6 +1,7 @@
 import FormFields from './components/FormField';
 import { FormProvider } from './provider/FormProvider';
 import Toggle from './components/Toggle';
+import { customFormReducer } from './reducers/form-reducer';
 import { customToggleReducer } from './reducers/toggle-reducer';
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
     <div className="flex flex-col items-center">
       <Toggle />
       <Toggle reducer={customToggleReducer} />
-      <FormProvider>
+      <FormProvider reducer={customFormReducer}>
         <FormFields />
       </FormProvider>
     </div>
