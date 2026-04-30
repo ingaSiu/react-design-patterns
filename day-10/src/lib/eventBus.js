@@ -4,6 +4,8 @@
 // using a Map of event names → Set of handlers
 // -------------------------------
 
+import { crossTabChannel } from './broadcast';
+
 // Map that stores: eventName -> Set of subscriber functions
 const listeners = new Map();
 
@@ -25,10 +27,14 @@ export const eventBus = {
   },
 
   // ---- PUBLISH / EMIT an event ----
-  publish(eventName, payload) {
+  publish(eventName, payload, { broadcast = true } = {}) {
     // If the event has subscribers, call them
     listeners.get(eventName)?.forEach((handler) => {
       handler(payload);
     });
+    // Broadcast to other tabs (avoid infinite loops)
+    if (broadcast) {
+      crossTabChannel.postMessage({ eventName, payload });
+    }
   },
 };
