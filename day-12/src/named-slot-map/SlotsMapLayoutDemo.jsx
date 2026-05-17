@@ -1,6 +1,8 @@
 import Article from './Article';
 import SlotsMapLayout from './SlotsMapLayout';
 
+// consumer has to make sure that they are passing correct properties to related content
+
 const SlotsMapLayoutDemo = () => {
   return (
     <SlotsMapLayout
