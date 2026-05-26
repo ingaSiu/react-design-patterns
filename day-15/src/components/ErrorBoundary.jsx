@@ -25,12 +25,14 @@ class ErrorBoundary extends React.Component {
     console.error('Error:', error.message);
     console.error('Component stack:', info.componentStack);
   }
-
+  // add retry - to see if the error have recovered
+  // setState - updates the state variable (in class component)
+  // after re-rendering it will check if there is still an error or not and show fitting UI
   handleRetry = () => {
     this.setState((prev) => ({
-      hasError: false,
+      hasError: false, // recovering from the error as I retry
       error: null,
-      retryKey: prev.retryKey + 1,
+      retryKey: prev.retryKey + 1, // on every retry click the value will update and cause re-render
     }));
   };
 
@@ -40,10 +42,12 @@ class ErrorBoundary extends React.Component {
     const { hasError, error, retryKey } = this.state;
     const { fallback: Fallback, children } = this.props;
 
+    // return error
     if (hasError) {
       return <Fallback error={error} onRetry={this.handleRetry} />;
     }
-
+    // if no error return children
+    // uswe retry key as a key, because the moment the key value changes, React will re-render
     return <div key={retryKey}>{children}</div>;
   }
 }
